@@ -1,0 +1,39 @@
+.collection-item {
+  width: 22%;
+  display: flex;
+  // flex column allows footer and image to sit in vertical alignment
+  flex-direction: column;
+  // total height of component collection-item is 350px
+  height: 350px;
+  align-items: center;
+
+
+  // image height is 95%, so the collection-footer height should be 5%
+  .image {
+    width: 100%;
+    height: 95%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 5px;
+  }
+
+  .collection-footer {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    // space-between allows each item to have space between each other
+    justify-content: space-between;
+    font-size: 18px;
+
+    // name takes 90% of space so price takes up remaining 10% width in the footer
+    .name {
+      width: 90%;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      width: 10%;
+    }
+  }
+}
+

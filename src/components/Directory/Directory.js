@@ -2,7 +2,7 @@ import React from 'react';
 
 import MenuItem from '../MenuItem/MenuItem';
 
-import './directory.scss;';
+import './directory.scss';
 
 class Directory extends React.Component {
   constructor() {
