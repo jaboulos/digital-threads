@@ -1,11 +1,11 @@
 import React from 'react';
 
 import FormInput from '../FormInput/FormInput';
+import Button from '../Button/Button';
 
 import './signIn.scss';
 
 // class component bc we need to store what the user enters
-
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -57,7 +57,7 @@ class SignIn extends React.Component {
             required
           />
 
-          <input type='submit' value='Submit Form' />
+          <Button type='submit'>Sign in</Button>
         </form>
       </div>
     );
