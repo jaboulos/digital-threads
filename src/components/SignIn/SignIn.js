@@ -1,4 +1,5 @@
 import React from 'react';
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 import FormInput from '../FormInput/FormInput';
 import Button from '../Button/Button';
@@ -58,6 +59,8 @@ class SignIn extends React.Component {
           />
 
           <Button type='submit'>Sign in</Button>
+          {/* sign in with google oauth */}
+          <Button onClick={signInWithGoogle}>Sign in with Google</Button>
         </form>
       </div>
     );
