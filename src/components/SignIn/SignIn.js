@@ -57,10 +57,13 @@ class SignIn extends React.Component {
             label='password'
             required
           />
-
-          <Button type='submit'>Sign in</Button>
-          {/* sign in with google oauth */}
-          <Button onClick={signInWithGoogle}>Sign in with Google</Button>
+          <div className='buttons'>
+            <Button type='submit'>Sign in</Button>
+            {/* sign in with google oauth */}
+            <Button onClick={signInWithGoogle} isGoogleSignIn>
+              Sign in with Google
+            </Button>
+          </div>
         </form>
       </div>
     );

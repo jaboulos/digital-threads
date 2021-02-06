@@ -1,11 +1,17 @@
 // 30% of the total view width
 .sign-in {
-  width: 30vw;
+  // width: 30vw;
+  width: 380px;
   display: flex;
   // want all elements in sign-in to sit vertically
   flex-direction: column;
 
   .title {
     margin: 10px 0;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
   }
 }
