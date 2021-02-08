@@ -8,3 +8,8 @@ a {
   text-decoration: none;
   color: black;
 }
+
+/* universal selector, for every element */
+* {
+  box-sizing: border-box;
+}
