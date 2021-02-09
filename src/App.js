@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // tool for saving state of a user that has signed in
@@ -48,17 +48,27 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
-          <Route path='/signin' component={SignInAndSignUp} />
+          <Route
+            exact
+            path='/signin'
+            render={() =>
+              this.props.currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
+            }
+          />
         </Switch>
       </div>
     );
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   // dispatching user object
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
-// first argument is null (mapStateToProps) app.js doesnt need it right now
-export default connect(null, mapDispatchToProps)(App);
+// first argument can be null
+export default connect(mapStateToProps, mapDispatchToProps)(App);
