@@ -4,9 +4,19 @@ import { connect } from 'react-redux';
 
 import { auth } from '../../firebase/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
+import CartIcon from '../CartIcon/CartIcon';
+import CartDropdown from '../CartDropdown/CartDropdown';
+
 import './header.scss';
 
-const Header = ({ currentUser }) => (
+// state here is the top level 'root-reducer'
+// syntax for destructuring nested values
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
+});
+
+const Header = ({ currentUser, hidden }) => (
   <div className='header'>
     {/* logo that links to homepage on click */}
     <Link className='logo-container' to='/'>
@@ -28,13 +38,10 @@ const Header = ({ currentUser }) => (
           SIGN IN
         </Link>
       )}
+      <CartIcon />
     </div>
+    {hidden ? null : <CartDropdown />}
   </div>
 );
-
-// state here is the top level 'root-reducer'
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
-});
 
 export default connect(mapStateToProps)(Header);
