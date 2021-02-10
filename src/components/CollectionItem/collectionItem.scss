@@ -6,7 +6,7 @@
   // total height of component collection-item is 350px
   height: 350px;
   align-items: center;
-
+  position: relative;
 
   // image height is 95%, so the collection-footer height should be 5%
   .image {
@@ -17,15 +17,32 @@
     margin-bottom: 5px;
   }
 
+  .custom-button {
+    width: 80%;
+    opacity: 0.7;
+    position: absolute;
+    top: 255px;
+    display: none;
+  }
+
+  &:hover {
+    .image {
+      opacity: 0.8;
+    }
+
+    .custom-button {
+      opacity: 0.85;
+      display: flex;
+    }
+  }
+
   .collection-footer {
     width: 100%;
     height: 5%;
     display: flex;
-    // space-between allows each item to have space between each other
     justify-content: space-between;
     font-size: 18px;
 
-    // name takes 90% of space so price takes up remaining 10% width in the footer
     .name {
       width: 90%;
       margin-bottom: 15px;
@@ -36,4 +53,3 @@
     }
   }
 }
-
