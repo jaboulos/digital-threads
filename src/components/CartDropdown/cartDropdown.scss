@@ -10,13 +10,13 @@
   top: 90px;
   right: 40px;
   z-index: 5;
-  oveflow:auto // hides scrollbar
+  // oveflow:auto // hides scrollbar
 
   .cart-items {
     height: 240px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
   }
 
   button {
