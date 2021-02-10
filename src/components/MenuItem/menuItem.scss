@@ -7,6 +7,7 @@
   justify-content: center;
   border: 1px solid black;
   margin: 0 7.5px 15px;
+  overflow: hidden;
 
   // transition effects with cursor
   &:hover {
@@ -27,7 +28,7 @@
 
   // if our menu-item also has .large, give it a height of 380px
   &.large {
-    height:380px;
+    height: 380px;
   }
 
   &:first-child {
@@ -41,8 +42,8 @@
   .background-image {
     width: 100%;
     height: 100%;
-    background-position: center;
     background-size: cover;
+    background-position: center;
   }
 
   .content {
@@ -55,12 +56,11 @@
     border: 1px solid black;
     background-color: white;
     opacity: 0.7;
-    // content is always centered
     position: absolute;
 
     .title {
       font-weight: bold;
-      margin-bottom: 6px;
+      margin: 0 6px 0;
       font-size: 22px;
       color: #4a4a4a;
     }
