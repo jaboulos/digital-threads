@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { selectCartHidden } from '../../selectors/cartSelectors';
+import { selectCurrentUser } from '../../selectors/userSelectors';
+
 import { auth } from '../../firebase/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartIcon from '../CartIcon/CartIcon';
@@ -11,9 +14,9 @@ import './header.scss';
 
 // state here is the top level 'root-reducer'
 // syntax for destructuring nested values
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
+  hidden: selectCartHidden(state),
 });
 
 const Header = ({ currentUser, hidden }) => (
