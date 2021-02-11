@@ -6,10 +6,12 @@ import { connect } from 'react-redux';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/userActions';
 
+import Checkout from './pages/Checkout/Checkout';
+import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/Shop/ShopPage';
 import SignInAndSignUp from './pages/SignInAndSignUp/SignInAndSignUp';
-import Header from './components/Header/Header';
+
 import './App.css';
 
 class App extends React.Component {
@@ -48,6 +50,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
+          <Route exact path='/checkout' component={Checkout} />
           <Route
             exact
             path='/signin'
