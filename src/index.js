@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './App';
-import store from './redux/store';
+import { store } from './redux/store';
 
 ReactDOM.render(
   // Provider is a component class from react-redux that once passed the store object, will be able to give that redux store context to the rest of the application so that we can dispatch actions to that store or pull values off of the store and into the code
