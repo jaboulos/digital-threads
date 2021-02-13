@@ -24,6 +24,7 @@ const Header = ({ currentUser, hidden }) => (
     {/* logo that links to homepage on click */}
     <Link className='logo-container' to='/'>
       <Logo className='logo' />
+      HOME
     </Link>
     <div className='options'>
       <Link className='option' to='/shop'>
