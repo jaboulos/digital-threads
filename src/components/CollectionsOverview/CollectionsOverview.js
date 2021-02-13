@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { selectCollections } from '../../selectors/shopSelectors';
+import { selectCollectionsForPreview } from '../../selectors/shopSelectors';
 
 import CollectionPreview from '../../components/CollectionPreview/CollectionPreview';
 
 import './collectionsOverview.scss';
 
 const mapStateToProps = (state) => ({
-  collections: selectCollections(state),
+  collections: selectCollectionsForPreview(state),
 });
 
 const CollectionsOverview = ({ collections }) => (
