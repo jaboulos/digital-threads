@@ -6,6 +6,10 @@ import Button from '../Button/Button';
 
 import './signIn.scss';
 
+const errorMessages = {
+  invalidUsernameOrPassword: 'Invalid username or password',
+};
+
 // class component bc we need to store what the user enters
 class SignIn extends React.Component {
   constructor(props) {
@@ -14,6 +18,7 @@ class SignIn extends React.Component {
     this.state = {
       email: '',
       password: '',
+      error: false,
     };
   }
 
@@ -29,6 +34,9 @@ class SignIn extends React.Component {
       this.setState({ email: '', password: '' });
     } catch (error) {
       console.log(error);
+      this.setState({
+        error: true,
+      });
     }
   };
 
@@ -41,6 +49,7 @@ class SignIn extends React.Component {
   };
 
   render() {
+    const { error } = this.state;
     return (
       // div contains entire SignIn component
       <div className='sign-in'>
@@ -66,6 +75,11 @@ class SignIn extends React.Component {
             label='password'
             required
           />
+          {error ? (
+            <span className='error'>
+              {errorMessages.invalidUsernameOrPassword}
+            </span>
+          ) : null}
           <div className='buttons'>
             <Button type='submit'>Sign in</Button>
             {/* sign in with google oauth */}
