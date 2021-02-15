@@ -3,8 +3,15 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // tool for saving state of a user that has signed in
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import {
+  auth,
+  createUserProfileDocument,
+  // addCollectionAndDocuments,
+} from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/userActions';
+
+// comment out used for adding / updating data in FB
+// import { selectCollectionsForPreview } from './selectors/shopSelectors';
 
 import Checkout from './pages/Checkout/Checkout';
 import Header from './components/Header/Header';
@@ -19,6 +26,7 @@ class App extends React.Component {
 
   // subscriber to firebase, subscribes to the state of a user that has signed in or out
   componentDidMount() {
+    // const { setCurrentUser, collectionsArray } = this.props;
     const { setCurrentUser } = this.props;
     // user parameter is what the user state is of the auth
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -34,6 +42,13 @@ class App extends React.Component {
       } else {
         // set currentUser too null
         setCurrentUser(userAuth);
+
+        // *** updates firebase db with shop_data
+        // *** only run this once to add to collections in FB
+        // addCollectionAndDocuments(
+        //   'collections',
+        //   collectionsArray.map(({ title, items }) => ({ title, items }))
+        // );
       }
     });
   }
@@ -64,8 +79,10 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+  // comment out run once to update or add collection from shop_data
+  // collectionsArray: selectCollectionsForPreview(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
