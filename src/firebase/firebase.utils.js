@@ -59,8 +59,44 @@ export const addCollectionAndDocuments = async (
     batch.set(newDocRef, obj);
   });
 
-  //fire batch request
+  // fire batch request
   return await batch.commit();
+};
+
+// export const convertCollectionsSnapshotToMap = (collections) => {
+//   const transformedCollection = collections.docs.map((doc) => {
+//     const { title, items } = doc.data();
+
+//     return {
+//       routeName: encodeURI(title.toLowerCase()),
+//       id: doc.id,
+//       title,
+//       items,
+//     };
+//   });
+//   // console.log('convertCollectionsSnapshotToMap ==> ', transformedCollection);
+//   return transformedCollection.reduce((acc, collection) => {
+//     acc[collection.title.toLowerCase()] = collection;
+//     return acc;
+//   }, {});
+// };
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map((doc) => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items,
+    };
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
 };
 
 export const auth = firebase.auth();
