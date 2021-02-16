@@ -30,14 +30,20 @@ class ShopPage extends React.Component {
     const { updateCollections } = this.props;
     const collectionRef = firestore.collection('collections');
 
+    // can use native fetch method, values are deeply nested with this approach though
+    // fetch(
+    //   'https://firestore.googleapis.com/v1/projects/digital-threads-db/databases/(default)/documents/collections'
+    // )
+    //   .then((res) => res.json())
+    //   .then((collections) => console.log('COLLECTIONS', collections));
+
     // whenever collectionRef updates or code is run for the first time, collectionRef will send a snapshot representing the code of our collections objects array at the time when this code renders
-    this.unsubscribeFromSnapshot = collectionRef.onSnapshot(
-      async (snapshot) => {
-        const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        updateCollections(collectionsMap);
-        this.setState({ loading: false });
-      }
-    );
+
+    collectionRef.get().then((snapshot) => {
+      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+      updateCollections(collectionsMap);
+      this.setState({ loading: false });
+    });
   }
 
   render() {
