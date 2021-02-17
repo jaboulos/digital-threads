@@ -2,13 +2,11 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// pull in firestore library
+import { fetchCollectionsStartAsync } from '../../redux/shop/shopActions';
 import {
-  firestore,
-  convertCollectionsSnapshotToMap,
-} from '../../firebase/firebase.utils';
-
-import { updateCollections } from '../../redux/shop/shopActions';
+  selectIsCollectionFetching,
+  selectIsCollectionsLoaded,
+} from '../../selectors/shopSelectors';
 
 import WithSpinner from '../../components/WithSpinner/WithSpinner';
 
@@ -21,48 +19,35 @@ const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionWithSpinner = WithSpinner(Collection);
 
 class ShopPage extends React.Component {
-  // shorthand syntax without constructor
-  state = { loading: true };
-
-  unsubscribeFromSnapshot = null;
-
   componentDidMount() {
-    const { updateCollections } = this.props;
-    const collectionRef = firestore.collection('collections');
-
-    // can use native fetch method, values are deeply nested with this approach though
-    // fetch(
-    //   'https://firestore.googleapis.com/v1/projects/digital-threads-db/databases/(default)/documents/collections'
-    // )
-    //   .then((res) => res.json())
-    //   .then((collections) => console.log('COLLECTIONS', collections));
-
-    // whenever collectionRef updates or code is run for the first time, collectionRef will send a snapshot representing the code of our collections objects array at the time when this code renders
-
-    collectionRef.get().then((snapshot) => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      updateCollections(collectionsMap);
-      this.setState({ loading: false });
-    });
+    const { fetchCollectionsStartAsync } = this.props;
+    // dispatch this action as soon as component mounts
+    fetchCollectionsStartAsync();
   }
 
   render() {
-    const { match } = this.props;
-    const { loading } = this.state;
+    const { match, isCollectionFetching, isCollectionsLoaded } = this.props;
+
     return (
       <div className='shop-page'>
         <Route
           exact
           path={`${match.path}`}
           render={(props) => (
-            <CollectionsOverviewWithSpinner isLoading={loading} {...props} />
+            <CollectionsOverviewWithSpinner
+              isLoading={isCollectionFetching}
+              {...props}
+            />
           )}
         />
         <Route
           exact
           path={`${match.path}/:collectionId`}
           render={(props) => (
-            <CollectionWithSpinner isLoading={loading} {...props} />
+            <CollectionWithSpinner
+              isLoading={!isCollectionsLoaded}
+              {...props}
+            />
           )}
         />
       </div>
@@ -70,9 +55,13 @@ class ShopPage extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  updateCollections: (collectionsMap) =>
-    dispatch(updateCollections(collectionsMap)),
+const mapStateToProps = (state) => ({
+  isCollectionFetching: selectIsCollectionFetching(state),
+  isCollectionsLoaded: selectIsCollectionsLoaded(state),
 });
 
-export default connect(null, mapDispatchToProps)(ShopPage);
+const mapDispatchToProps = (dispatch) => ({
+  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
