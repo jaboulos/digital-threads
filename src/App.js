@@ -10,7 +10,7 @@ import {
 } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/userActions';
 
-// comment out used for adding / updating data in FB
+// leave here, used for adding / updating data in Firebase
 // import { selectCollectionsForPreview } from './selectors/shopSelectors';
 
 import Checkout from './pages/Checkout/Checkout';
@@ -26,7 +26,6 @@ class App extends React.Component {
 
   // subscriber to firebase, subscribes to the state of a user that has signed in or out
   componentDidMount() {
-    // const { setCurrentUser, collectionsArray } = this.props;
     const { setCurrentUser } = this.props;
     // user parameter is what the user state is of the auth
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -81,7 +80,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
-  // comment out run once to update or add collection from shop_data
+  // leave comment in, run once to update or add collection from shop_data
   // collectionsArray: selectCollectionsForPreview(state),
 });
 
