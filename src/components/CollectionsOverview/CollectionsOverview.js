@@ -13,7 +13,6 @@ const mapStateToProps = (state) => ({
 
 const CollectionsOverview = ({ collections }) => (
   <div className='collections-overview'>
-    {/* destructure properties from shop data and pass them all into CollectionPreview */}
     {collections.map(({ id, ...rest }) => (
       <CollectionPreview key={id} {...rest} />
     ))}

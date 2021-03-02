@@ -9,8 +9,6 @@ import './signIn.scss';
 const errorMessages = {
   invalidUsernameOrPassword: 'Invalid username or password',
 };
-
-// class component bc we need to store what the user enters
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -23,9 +21,7 @@ class SignIn extends React.Component {
   }
 
   handleSubmit = async (event) => {
-    // prevent default submit from firing
     event.preventDefault();
-
     const { email, password } = this.state;
 
     try {
@@ -41,10 +37,7 @@ class SignIn extends React.Component {
   };
 
   handleChange = (event) => {
-    // pull both value and name off of event
-    const { value, name } = event.target; // target is input value itself
-    // bracket notation...if name is password, sets the state for password with the value, if name is email, sets the state for email with the value
-    // allows us to pass the same function into the same input, dynamically sets property value
+    const { value, name } = event.target;
     this.setState({ [name]: value });
   };
 
@@ -61,7 +54,6 @@ class SignIn extends React.Component {
             name='email'
             type='email'
             value={this.state.email}
-            // handleChange is the name of the prop we are passing now instead of onChange into FromInput
             handleChange={this.handleChange}
             label='email'
             required

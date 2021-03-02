@@ -40,7 +40,6 @@ const getButtonStyles = (props) => {
   if (props.isGoogleSignIn) {
     return googleSignInStyles;
   }
-  // otherwise, check if inverted as a prop is true
   return props.inverted ? invertedButtonStyles : buttonStyles;
 };
 
@@ -52,12 +51,9 @@ export const ButtonContainer = styled.button`
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  /* background-color: black;
-  color: white; */
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
   font-weight: bolder;
-  /* border: none; */
   cursor: pointer;
   display: flex;
   justify-content: center;

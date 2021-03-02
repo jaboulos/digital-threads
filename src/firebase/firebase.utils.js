@@ -19,12 +19,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   const snapShot = await userRef.get();
-  // query inside of firestore to see if document already exists
-  // console.log(snapShot);
 
   // if snapshot doesnt exist, create data
-  // checking if there is any data (snapshot)
-  // if there isnt create a new user from the data from userAuth
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -63,24 +59,6 @@ export const addCollectionAndDocuments = async (
   return await batch.commit();
 };
 
-// export const convertCollectionsSnapshotToMap = (collections) => {
-//   const transformedCollection = collections.docs.map((doc) => {
-//     const { title, items } = doc.data();
-
-//     return {
-//       routeName: encodeURI(title.toLowerCase()),
-//       id: doc.id,
-//       title,
-//       items,
-//     };
-//   });
-//   // console.log('convertCollectionsSnapshotToMap ==> ', transformedCollection);
-//   return transformedCollection.reduce((acc, collection) => {
-//     acc[collection.title.toLowerCase()] = collection;
-//     return acc;
-//   }, {});
-// };
-
 export const convertCollectionsSnapshotToMap = (collections) => {
   const transformedCollection = collections.docs.map((doc) => {
     const { title, items } = doc.data();
@@ -105,10 +83,9 @@ export const firestore = firebase.firestore();
 // setup google auth utility
 const provider = new firebase.auth.GoogleAuthProvider();
 
-// trigger google pop up whenever we use this google auth provider for authentication and sign in
+// trigger google pop up
 provider.setCustomParameters({ prompt: 'select_account' });
 
-// lots of pop ups, we want the google one
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;

@@ -11,7 +11,6 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  // Provider is a component class from react-redux that once passed the store object, will be able to give that redux store context to the rest of the application so that we can dispatch actions to that store or pull values off of the store and into the code
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate persistor={persistor}>

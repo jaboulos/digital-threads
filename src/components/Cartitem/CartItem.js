@@ -6,8 +6,6 @@ import {
   CartItemImage,
 } from './styledComponents';
 
-// import './cartItem.scss';
-
 const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
   <CartItemContainer>
     <CartItemImage src={imageUrl} alt='item' />

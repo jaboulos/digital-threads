@@ -6,7 +6,6 @@ import { addItem } from '../../redux/cart/cartActions';
 
 import './collectionItem.scss';
 
-// addItem dispatch is now available to be passed in as props to CollectionItem
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
 });

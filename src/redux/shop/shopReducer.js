@@ -3,7 +3,7 @@ import shopActionTypes from './shopTypes';
 
 const INITIAL_STATE = {
   collections: null,
-  isFetching: false, //are we fetching the data for the collections endpoint
+  isFetching: false,
   errorMessage: undefined,
 };
 

@@ -16,8 +16,6 @@ import {
   RemoveButtonContainer,
 } from './styledComponents';
 
-// import './checkoutItem.scss';
-
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   decreaseItem: (item) => dispatch(decreaseItem(item)),

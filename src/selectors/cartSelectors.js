@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 const selectCart = (state) => state.cart;
 
 export const selectCartItems = createSelector(
-  [selectCart], // array of input selectors
+  [selectCart],
   (cart) => cart.cartItems
 );
 

@@ -17,8 +17,6 @@ import {
   OptionLink,
 } from './styledComponents';
 
-// state here is the top level 'root-reducer'
-// syntax for destructuring nested values
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
   hidden: selectCartHidden(state),

@@ -16,7 +16,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case cartActionTypes.ADD_ITEM:
       return {
         ...state,
-        // cartItems: [...state.cartItems, action.payload],
         cartItems: addItemToCart(state.cartItems, action.payload),
       };
     case cartActionTypes.DECREASE_ITEM:
@@ -27,7 +26,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case cartActionTypes.CLEAR_ITEM_FROM_CART:
       return {
         ...state,
-        // keep items whos id does NOT match what we are trying to clear out
+        // keep items whos id does NOT match what user is trying to clear out
         cartItems: state.cartItems.filter(
           (cartItem) => cartItem.id !== action.payload.id
         ),

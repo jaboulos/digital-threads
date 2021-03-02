@@ -8,7 +8,7 @@ const CollectionPreview = ({ title, items }) => (
   <div className='collection-preview'>
     <h1 className='title'>{title.toUpperCase}</h1>
     <div className='preview'>
-      {/* only display 4 items at a time, use filter */}
+      {/* only display 4 items at a time, pagination is stretch feature */}
       {items
         .filter((_, idx) => idx < 4)
         .map((item) => (

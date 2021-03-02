@@ -20,8 +20,6 @@ class SignUp extends React.Component {
     };
   }
 
-  // async function that gets the event
-  // prevent default submit action
   handleSubmit = async (event) => {
     event.preventDefault();
 
