@@ -1,6 +1,6 @@
 # digital-threads
 
-> - Navigate to root directory of project and run `npm install`
+> - Navigate to root directory of the project and run `npm install`
 >
 > - After installation, run `npm start`
 >
