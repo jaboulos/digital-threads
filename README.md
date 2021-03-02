@@ -1,8 +1,8 @@
 # digital-threads
 
-> - Navigate to root directory of the project and run `npm install`
+> - Navigate to the root directory of the project and run `npm install`
 >
-> - After installation, run `npm start`
+> - After installation is complete run `npm start`
 >
 > - The application is served on localhost:3000
 >
